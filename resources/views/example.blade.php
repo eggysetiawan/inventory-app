@@ -9,8 +9,9 @@
         <div class="col-md-8">
             {{-- <a href="{{ route('products.create') }}" class="btn btn-primary btn-sm mb-2">{{ __('Add Product') }}</a> --}}
         </div>
-        <x-card>
+    </div>
+    <x-card>
 
 
-        </x-card>
-    @endsection
+    </x-card>
+@endsection

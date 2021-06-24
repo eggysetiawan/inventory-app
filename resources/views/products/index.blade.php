@@ -11,7 +11,7 @@
             <a href="{{ route('products.create') }}" class="btn btn-success btn-sm mb-2">{{ __('Add Product') }}</a>
         </div>
         <x-card>
-            <table class="table table-stripped table-hover table-hover">
+            <table class="table table-striped table-hover table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -66,6 +66,7 @@
                     @endforelse
                 </tbody>
             </table>
-
         </x-card>
+
+
     @endsection

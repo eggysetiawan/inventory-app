@@ -16,7 +16,7 @@ class LanguageMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        app()->setLocale(auth()->user()->lang);
+        app()->setLocale(auth()->user()->lang ?? 'en');
         return $next($request);
     }
 }

@@ -9,11 +9,11 @@ use App\Http\Controllers\{ProductController, ActivityController, LanguageControl
 
 
 Auth::routes();
-Route::middleware('lang')->group(function () {
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+Route::middleware('lang')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

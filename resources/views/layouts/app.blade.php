@@ -7,6 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <head>
     @include('layouts.head')
+    <livewire:styles />
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav accent-success">
@@ -58,6 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- REQUIRED SCRIPTS -->
     @include('layouts.script')
+    <livewire:scripts />
 
 </body>
 
