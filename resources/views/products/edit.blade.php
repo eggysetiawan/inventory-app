@@ -6,7 +6,7 @@
 
 @endsection
 @section('content')
-    <form action="{{ route('products.update', $product->slug) }}" method="post">
+    <form action="{{ route('products.update', $product->slug) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('patch')
 

@@ -33,6 +33,17 @@
         @enderror
     </div>
 
+    <div class="form-group">
+        <label for="img">{{ __('Product Image') }}</label>
+        <input type="file" name="img" id="img" class="form-control-file">
+        <footer class="blockquote-footer mt-2">{{ __('Max size 2 mb') }}</footer>
+    </div>
+
+    @if ($product->getFirstMediaUrl('product'))
+        <img src="{{ asset($product->getFirstMediaUrl('product')) }}" alt="{{ $product->name }}" class="img-fluid"
+            width="100">
+    @endif
+
 </div>
 
 <div class="card-footer">

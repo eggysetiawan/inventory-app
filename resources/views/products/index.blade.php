@@ -8,7 +8,7 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="{{ route('products.create') }}" class="btn btn-primary btn-sm mb-2">{{ __('Add Product') }}</a>
+            <a href="{{ route('products.create') }}" class="btn btn-success btn-sm mb-2">{{ __('Add Product') }}</a>
         </div>
         <x-card>
             <table class="table table-stripped table-hover table-hover">
@@ -46,7 +46,7 @@
                                         @method('delete')
 
                                         <button type="submit"
-                                            onclick="return confirm({{ __('Are you sure you want to delete this resource?') }})"
+                                            onclick="return confirm('{{ __('Are you sure you want to delete this resource?') }}')"
                                             class="dropdown-item" title="{{ __('Delete product from table') }}"><i
                                                 class="far fa-trash-alt nav-icon"></i>
                                             {{ __('Delete') }}
@@ -54,6 +54,10 @@
                                     </form>
                                 </x-dropdown>
                             </td>
+                            {{-- <td>
+                                <img src="{{ asset($product->getFirstMediaUrl('product', 'thumb')) }}" class="img-fluid"
+                                    alt="">
+                            </td> --}}
                         </tr>
                     @empty
                         <tr>

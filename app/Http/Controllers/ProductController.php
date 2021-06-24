@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+use App\Services\ProductService;
 
 class ProductController extends Controller
 {
@@ -34,14 +36,21 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\ProductRequest  $request
+     * @param  \App\Services\ProductService; $productService
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request, ProductService $productService)
     {
-        $attr = $request->validated();
-        $attr['slug'] = Str::slug($request->name);
-        Product::create($attr);
+
+        DB::transaction(function () use ($request, $productService) {
+            $productService->createProduct($request);
+
+            if ($request->has('img')) {
+                $productService->uploadImage();
+            }
+        });
+
 
         session()->flash('success', __('Product has been created'));
         return redirect()->route('products.index');
@@ -55,7 +64,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -76,9 +85,19 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product, ProductService $productService)
     {
-        //
+        DB::transaction(function () use ($request, $product, $productService) {
+            $product->update($request->validated());
+            if ($request->has('img')) {
+                $product->media()->delete();
+                $productService->updateImage($product);
+            }
+        });
+
+
+        session()->flash('success', __('Product has been updated'));
+        return redirect()->route('products.index');
     }
 
     /**
@@ -89,6 +108,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->media()->delete();
+        $product->delete();
+        session()->flash('success', __('Product has been deleted!'));
+        return redirect()->route('products.index');
     }
 }

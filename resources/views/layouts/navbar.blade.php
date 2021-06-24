@@ -17,11 +17,14 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item{{ request()->is('/') ? ' active' : '' }}">
                     <a href="{{ route('home') }}" class="nav-link">{{ __('Home') }}</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item{{ request()->is('products') ? ' active' : '' }}">
                     <a href="{{ route('products.index') }}" class="nav-link">{{ __('Product') }}</a>
+                </li>
+                <li class="nav-item{{ request()->is('activities') ? ' active' : '' }}">
+                    <a href="{{ route('activities.index') }}" class="nav-link">{{ __('Activities') }}</a>
                 </li>
 
                 {{-- <li class="nav-item">

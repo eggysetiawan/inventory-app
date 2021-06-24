@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <x-alert-success />
+        {{-- <x-alert-success /> --}}
         <div class="card">
             <div class="card-header">Inventory App </div>
 

@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{ProductController, ActivityController, LanguageController};
+
 
 
 
@@ -16,6 +16,8 @@ Route::middleware('lang')->group(function () {
     });
     Route::middleware('auth')->group(function () {
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+        Route::resource('activities', ActivityController::class);
 
         Route::patch('language', LanguageController::class)->name('lang');
 
