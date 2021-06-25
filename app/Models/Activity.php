@@ -20,7 +20,8 @@ class Activity extends Model
             ->whereHas('product', function ($q) use ($query) {
                 return $q->where('name', 'like', "%$query%");
             })
-            ->oldest();
+            ->oldest()
+            ->get();
     }
 
     public function product()

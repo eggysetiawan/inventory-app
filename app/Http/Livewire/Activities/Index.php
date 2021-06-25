@@ -31,6 +31,7 @@ class Index extends Component
         $to = date('Y-m-d H:i', strtotime($this->to));
 
         $this->activities = Activity::filterActivities($from, $to, $this->query);
+        $this->totalQuantity = $this->activities->sum('quantity');
     }
 
     public function getActivitiesProperty()
@@ -41,23 +42,25 @@ class Index extends Component
                 return $q->where('name', 'like', "%$this->query%");
             })
             ->latest()
-            ->take(100)
             ->get();
     }
 
-    public function updatedTotalQuantity()
+    public function updatedQuery($value)
     {
-        if ($this->activities) {
-            $this->totalQuantity = $this->activities->sum('quantity');
-        }
+        $this->totalQuantity = Activity::query()
+            ->with('product', 'user')
+            ->whereHas('product', function ($q) use ($value) {
+                return $q->where('name', 'like', "%$value%");
+            })
+            ->get()
+            ->sum('quantity');
     }
+
 
 
     public function mount()
     {
-        if ($this->activities) {
-            $this->totalQuantity = $this->activities->sum('quantity');
-        }
+        $this->totalQuantity = $this->activities->sum('quantity');
     }
 
 
