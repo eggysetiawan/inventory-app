@@ -4,11 +4,19 @@
   <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   {{-- toaster --}}
   <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+  {{-- select2 --}}
+  <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 
   <!-- AdminLTE App -->
   <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 
   @yield('script-footer')
+
+  <script>
+      $(document).ready(function() {
+          $('.select2').select2();
+      });
+  </script>
 
   @if (session()->has('success'))
 

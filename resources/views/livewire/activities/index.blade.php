@@ -5,6 +5,10 @@
         <div class="col-md-10">
             <a href="{{ route('activities.create') }}"
                 class="btn btn-success btn-sm mb-2">{{ __('Create Activity') }}</a>
+            @if ($export)
+                <button class="btn btn-info btn-sm mb-2" wire:click="exportExcel">Export excel</button>
+            @endif
+
         </div>
     </div>
 
@@ -13,13 +17,7 @@
         <div class="col-md-10">
             {{-- <x-alert-success /> --}}
             <div class="card">
-
-
                 @include('activities.partials.filter')
-
-
-
-
                 <div class="card-header">
                     <h3 class="card-title">Inventory App</h3>
 
@@ -46,6 +44,7 @@
                                 <th>{{ __('Quantity') }}</th>
                                 <th>{{ __('Status') }}</th>
                                 <th>{{ __('Activity Date') }}</th>
+                                <th>{{ __('Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,6 +56,29 @@
                                     <td>{{ $activity->quantity }}</td>
                                     <td>{{ $activity->status }}</td>
                                     <td>{{ $activity->created_at }}</td>
+                                    <td>
+                                        <x-dropdown>
+                                            <a href="{{ route('activities.edit', $activity->id) }}"
+                                                class="dropdown-item" title="{{ __('Edit this Activity') }}"><i
+                                                    class="fas fa-edit nav-icon"></i>
+                                                {{ __('Edit') }}
+                                            </a>
+
+                                            <form action="{{ route('activities.destroy', $activity->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('delete')
+
+                                                <button type="submit"
+                                                    onclick="return confirm('{{ __('Are you sure you want to delete this resource?') }}')"
+                                                    class="dropdown-item"
+                                                    title="{{ __('Delete activity from table') }}"><i
+                                                        class="far fa-trash-alt nav-icon"></i>
+                                                    {{ __('Delete') }}
+                                                </button>
+                                            </form>
+                                        </x-dropdown>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
@@ -64,26 +86,30 @@
                                 </tr>
                             @endforelse
                         </tbody>
-                        <tfoot>
-                            <footer>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th>{{ $totalQuantity }}</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </footer>
-                        </tfoot>
+
                     </table>
+
+
                     <div class="mt-3">
-                        {{-- @if (@$activities->hasMorePages())
-                            <button class="btn btn-success btn-block" wire:click.prevent="loadMore">
-                                {{ __('Load more..') }}
-                            </button>
-                        @endif --}}
+
                     </div>
                 </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>{{ __('Total In') }}</th>
+                            <th>{{ __('Total Out') }}</th>
+                            <th>{{ __('Total (In-Out)') }}</th>
+                        </tr>
+                    <tbody>
+                        <tr>
+                            <td>{{ $totalIn }}</td>
+                            <td>{{ $totalOut }}</td>
+                            <td>{{ $totalIn - $totalOut }}</td>
+                        </tr>
+                    </tbody>
+                    </thead>
+                </table>
                 <!-- /.card-body -->
             </div>
         </div>

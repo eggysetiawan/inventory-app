@@ -727,5 +727,17 @@
     "Activities": "Aktivitas",
     "Activity": "Aktivitas",
     "Create Activity": "Buat Aktivitas",
-    "Load more..": "Muat lebih banyak.."
+    "Load more..": "Muat lebih banyak..",
+    "Choose a Product": "Pilih Produk",
+    "Choose Activity": "Pilih Aktivitas",
+    "Activity has been created": "Aktivitas telah berhasil di buat",
+    "Edit this activity": "Edit aktivitas ini",
+    "Delete activity from table": "Hapus aktivitas dari table",
+    "Edit Activity": "Edit Aktivitas",
+    "Activity has been updated": "Aktivitas telah berhasil di perbarui",
+    "Activity has been deleted": "Aktivitas telah berhasil di hapus",
+    "Activity Date": "Tanggal Aktivitas",
+    "Total In": "Jumlah Barang Masuk",
+    "Total Out": "Jumlah Barang Keluar",
+    "Total (In-Out)": "Jumlah Barang (Masuk-Keluar)"
 }

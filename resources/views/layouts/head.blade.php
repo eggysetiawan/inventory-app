@@ -14,6 +14,9 @@
 <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
 {{-- toastr --}}
 <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
+{{-- select2 --}}
+<link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
