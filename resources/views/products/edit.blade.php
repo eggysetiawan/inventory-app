@@ -6,6 +6,8 @@
 
 @endsection
 @section('content')
+    <x-alert />
+
     <form action="{{ route('products.update', $product->slug) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('patch')

@@ -14,7 +14,8 @@
     <x-card>
         <dl class="row">
             <div class="col-md-4">
-                <img src="{{ asset($product->getFirstMediaUrl('product', 'thumb')) }}" class="img-fluid" alt="">
+                <img src="{{ asset($product->getFirstMediaUrl('product', 'thumb')) }}" class="img-fluid"
+                    alt="{{ $product->slug }}">
             </div>
             <div class="col-md-8">
                 <dt class="col-sm-3">{{ __('Product Name') }}</dt>
