@@ -21,11 +21,15 @@ class ActivityFactory extends Factory
      */
     public function definition()
     {
+        $arrayStatus = ['in', 'out'];
+        $randomStatus = array_rand($arrayStatus);
         return [
             'user_id' => rand(1, 6),
             'product_id' => rand(1, 10),
             'quantity' => rand(1, 10),
-            'status' => 'in'
+            'status' => $arrayStatus[$randomStatus],
+            'created_at' => $this->faker->dateTimeThisYear(),
+            'created_at' => $this->faker->dateTimeThisYear(),
         ];
     }
 }
