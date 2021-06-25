@@ -7,6 +7,7 @@
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav accent-success">
+    @include('layouts.preloader')
     <div class="wrapper">
 
         <!-- Navbar -->
