@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{ProductController, ActivityController, LanguageController};
+use App\Http\Controllers\{ProductController, ActivityController, LandingPageController, LanguageController};
 
 
 
@@ -10,9 +10,12 @@ use App\Http\Controllers\{ProductController, ActivityController, LanguageControl
 
 Auth::routes();
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+// Route::get(
+//     '/',
+//     LandingPage::controller
+// );
+Route::get('/', LandingPageController::class);
+
 Route::middleware('lang')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
